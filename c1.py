@@ -20,11 +20,11 @@ def find_largest_tuple(s, chars):
                 for start in range(0,len(s)-length+1):
                         valid_strings[start] = tuple(s[start:start+length])
                 candidates = set(valid_strings.values())
-                print(valid_strings)
+                print(candidates)
                 verified_candidates = []
                 valid_no_leftovers = {}
-
                 for c in candidates:
+                    print(c)
                     pos = len(c)
                     last = tuple(chars[-pos:])
                     if c == last:
