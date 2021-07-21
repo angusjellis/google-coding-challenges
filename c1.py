@@ -14,26 +14,33 @@ def solution(s):
         
 
 def find_largest_tuple(s, chars):
-        storage = []
+        storage = {}
         for length in range(1,int(len(s)/2)+1):
                 valid_strings = {}
                 for start in range(0,len(s)-length+1):
                         valid_strings[start] = tuple(s[start:start+length])
                 candidates = set(valid_strings.values())
-                verified_candidates = set()
+                print(valid_strings)
+                verified_candidates = []
+                valid_no_leftovers = {}
+
                 for c in candidates:
                     pos = len(c)
                     last = tuple(chars[-pos:])
                     if c == last:
-                        storage.append(c)
-                # if len(candidates) != len(valid_strings):
-                #         storage = valid_strings
-                # else:
-                #         break
-        if len(storage) > 0:
-            print(storage)
-        else:
-            print('hello')
+                        verified_candidates.append(c)
+                for start in range(0,len(verified_candidates)-length+1):
+                        valid_no_leftovers[start] = tuple(verified_candidates[start:start+length])
+                set_no_leftovers = set(valid_no_leftovers.values())
+                if len(set_no_leftovers) != len(valid_no_leftovers):
+                        storage = valid_no_leftovers
+                else:
+                        break
+        # if len(storage) > 0:
+        #     print(storage)
+        # else:
+        #     print('hello')
+        print(storage)
         first_sol = storage[0]
         return first_sol
 
